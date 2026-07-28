@@ -34,7 +34,7 @@ pip install Pillow
 python3 xhs_collect.py auth SESSION_ID
 ```
 
-Copy Cookie from Chrome F12 → Network → first request → Cookie header.
+Run the command, then: Chrome F12 → Network → refresh → click first request → find Cookie: in Request Headers → right-click Copy value → paste into terminal.
 
 ### 2. One Command
 

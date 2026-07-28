@@ -34,7 +34,7 @@ pip install Pillow
 python3 xhs_collect.py auth SESSION_ID
 ```
 
-从 Chrome F12 → Network → 复制 Cookie 粘贴到终端。
+按提示运行，然后：Chrome 按 F12 → Network → 刷新页面 → 点第一个请求 → 在 Request Headers 找到 Cookie: 行 → 右键 Copy value → 粘贴到终端。
 
 ### 2. 一键跑完
 

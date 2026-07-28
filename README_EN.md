@@ -77,7 +77,7 @@ export AGNES_API_KEY=sk-your-key
 python3 xhs_collect.py translate
 ```
 
-Without it, the UI text (Home, Follow, etc.) will still translate, but note titles/content stay in Chinese.
+Without it, only UI text (Home, Follow, etc.) translates. Note titles, content and comments stay in Chinese.
 
 ---
 

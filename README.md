@@ -77,7 +77,7 @@ export AGNES_API_KEY=sk-your-key
 python3 xhs_collect.py translate
 ```
 
-不配置则页面 UI 文字（首页→Home）会翻译，但笔记标题和正文保持中文。
+不配置则只翻译页面 UI 文字（首页→Home 等），笔记标题、正文、评论仍为中文。
 
 ---
 

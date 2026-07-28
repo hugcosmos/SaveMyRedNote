@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>⚙️ 小红书存档 - 管理配置</title>
+<style>
+:root{--red:#ff2442;--bg:#f5f5f5;--card:#fff;--t1:#1a1a1a;--t2:#555;--t3:#999;--bd:#f0f0f0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.panel{background:var(--card);border-radius:16px;box-shadow:0 2px 24px rgba(0,0,0,.06);width:100%;max-width:540px;padding:32px;margin:20px}
+h1{font-size:22px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sub{font-size:14px;color:var(--t3);margin-bottom:24px}
+.section{margin-bottom:20px}
+.section-title{font-size:14px;font-weight:700;color:var(--t2);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+label{font-size:13px;color:var(--t2);display:block;margin-bottom:4px;font-weight:500}
+input,textarea{width:100%;height:40px;border-radius:8px;border:1px solid #ddd;padding:0 12px;font-size:14px;outline:none;transition:border-color .15s;font-family:inherit}
+input:focus,textarea:focus{border-color:var(--red)}
+.hint{font-size:11px;color:var(--t3);margin-top:4px}
+.btn{height:40px;padding:0 24px;border-radius:20px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{opacity:.85}
+.btn-outline{background:var(--card);color:var(--t1);border:1px solid #ddd}
+.btn-outline:hover{background:#f5f5f5}
+.btns{display:flex;gap:8px;margin-top:24px}
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;z-index:999;opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+.sep{border-top:1px solid var(--bd);margin:20px 0}
+</style>
+</head>
+<body>
+<div class="panel">
+  <h1>⚙️ 管理配置</h1>
+  <div class="sub">配置搜索词、API Key 等。保存后自动生效于展示页面。</div>
+
+  <div class="section">
+    <div class="section-title">🔍 搜索配置</div>
+    <label>搜索框占位提示（中文）</label>
+    <input id="phZh" placeholder="万人迷">
+    <div class="hint">页面为中文时，搜索框的灰色提示文字</div>
+  </div>
+
+  <div class="section">
+    <label>搜索框占位提示（英文）</label>
+    <input id="phEn" placeholder="Letter To N.Y.">
+    <div class="hint">页面切换为英文时，搜索框的灰色提示文字</div>
+  </div>
+
+  <div class="section">
+    <label>搜索推荐词（逗号分隔）</label>
+    <textarea id="sugInput" style="height:80px;padding:10px 12px;resize:vertical" placeholder="万人迷, 诗意, AI, 诗歌, 猫咪"></textarea>
+    <div class="hint">鼠标悬浮搜索框时展示的下拉推荐词，逗号分隔</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="section">
+    <div class="section-title">👤 作者信息</div>
+    <label>用户名</label>
+    <input id="authorName" placeholder="你的昵称">
+  </div>
+  <div class="section">
+    <label>头像路径</label>
+    <input id="authorAvatar" placeholder="images/xxx/01.webp">
+    <div class="hint">相对于 index.html 的图片路径</div>
+  </div>
+  <div class="section">
+    <label>个人简介</label>
+    <input id="authorBio" placeholder="你的个人简介">
+  </div>
+  <div class="section" style="display:flex;gap:8px">
+    <div style="flex:1"><label>小红书号</label><input id="authorRedId" placeholder="你的小红书号"></div>
+    <div style="flex:1"><label>IP 属地</label><input id="authorIp" placeholder="北京"></div>
+  </div>
+  <div class="section">
+    <label>用户 ID</label>
+    <input id="authorUserId" placeholder="你的用户ID">
+    <div class="hint">用于评论区识别自己的评论，替换头像和用户名</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="section">
+    <div class="section-title">🤖 AI 翻译</div>
+    <label>Agnes AI API Key</label>
+    <input id="apiKey" type="password" placeholder="sk-...">
+    <div class="hint">设置后，运行 translate_data.py 可翻译中文内容为英文</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="section">
+    <div class="section-title">🖼️ 水印</div>
+    <label>水印文字</label>
+    <input id="watermarkText" placeholder="你的昵称">
+    <div class="hint">图片水印显示的文本（运行 xhs_collect.py watermark 时使用）</div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="section">
+    <div class="section-title">🔗 侧边栏链接</div>
+    <div style="font-size:12px;color:var(--t3);margin-bottom:10px">配置侧边栏的自定义链接（图标、名称、链接地址）</div>
+    <div id="sidebarEditor"></div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="section">
+    <div class="section-title">📋 数据统计</div>
+    <div id="stats" style="font-size:13px;color:var(--t3)">加载中…</div>
+  </div>
+
+  <div class="btns">
+    <button class="btn btn-red" onclick="save()">💾 保存配置</button>
+    <button class="btn btn-outline" onclick="reset()">🔄 恢复默认</button>
+    <a href="index.html" class="btn btn-outline" style="text-decoration:none">👁️ 查看展示页</a>
+    <a href="https://github.com/hugcosmos/SaveMyRedNote" class="btn btn-outline" target="_blank" style="text-decoration:none">📖 开源仓库</a>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULTS={placeholderZh:'搜索笔记...',placeholderEn:'Search notes...',suggestions:['万人迷','诗意','AI','诗歌','猫咪'],apiKey:'',authorName:'',authorAvatar:'',authorBio:'',authorRedId:'',authorIp:'',authorUserId:'',watermarkText:'',sidebarLinks:[
+  {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>',nameZh:'微信',nameEn:'WeChat',url:''},
+  {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>',nameZh:'头条',nameEn:'Toutiao',url:''},
+  {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>',nameZh:'B站',nameEn:'Bilibili',url:''},
+  {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',nameZh:'视频号',nameEn:'Video',url:''},
+  {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',nameZh:'邮箱',nameEn:'Email',url:''}
+]};
+
+function loadConfig(){try{return JSON.parse(localStorage.getItem('xhs_config')||'{}')}catch(e){return{}}}
+function getConfig(){return Object.assign({},DEFAULTS,loadConfig())}
+
+function show(c){
+  c=c||getConfig();
+  document.getElementById('phZh').value=c.placeholderZh||DEFAULTS.placeholderZh;
+  document.getElementById('phEn').value=c.placeholderEn||DEFAULTS.placeholderEn;
+  document.getElementById('sugInput').value=(c.suggestions||DEFAULTS.suggestions).join(', ');
+  document.getElementById('apiKey').value=c.apiKey||'';
+  document.getElementById('authorName').value=c.authorName||DEFAULTS.authorName;
+  document.getElementById('authorAvatar').value=c.authorAvatar||DEFAULTS.authorAvatar;
+  document.getElementById('authorBio').value=c.authorBio||DEFAULTS.authorBio;
+  document.getElementById('authorRedId').value=c.authorRedId||DEFAULTS.authorRedId;
+  document.getElementById('authorIp').value=c.authorIp||DEFAULTS.authorIp;
+  document.getElementById('authorUserId').value=c.authorUserId||DEFAULTS.authorUserId;
+  document.getElementById('watermarkText').value=c.watermarkText||'';
+  // Render sidebar editor
+  var links=c.sidebarLinks||DEFAULTS.sidebarLinks;
+  var sel=document.getElementById('sidebarEditor');if(sel)sel.innerHTML=links.map(function(l,i){return'<div style="display:flex;gap:8px;margin-bottom:10px;align-items:center;background:var(--bg);padding:8px 10px;border-radius:8px"><input id="sl_ic_'+i+'" type="hidden" value="'+esc(l.icon)+'"><input id="sl_zh_'+i+'" placeholder="中文名" value="'+esc(l.nameZh)+'" style="flex:1;height:32px"><input id="sl_en_'+i+'" placeholder="English" value="'+esc(l.nameEn)+'" style="flex:1;height:32px"><input id="sl_url_'+i+'" placeholder="https://..." value="'+esc(l.url)+'" style="flex:2;height:32px"></div>';}).join('');
+}
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2000);
+}
+
+function save(){
+  var c={
+    placeholderZh:document.getElementById('phZh').value.trim()||DEFAULTS.placeholderZh,
+    placeholderEn:document.getElementById('phEn').value.trim()||DEFAULTS.placeholderEn,
+    suggestions:document.getElementById('sugInput').value.split(',').map(function(s){return s.trim()}).filter(Boolean),
+    apiKey:document.getElementById('apiKey').value.trim(),
+    authorName:document.getElementById('authorName').value.trim()||DEFAULTS.authorName,
+    authorAvatar:document.getElementById('authorAvatar').value.trim()||DEFAULTS.authorAvatar,
+    authorBio:document.getElementById('authorBio').value.trim()||DEFAULTS.authorBio,
+    authorRedId:document.getElementById('authorRedId').value.trim()||DEFAULTS.authorRedId,
+    authorIp:document.getElementById('authorIp').value.trim()||DEFAULTS.authorIp,
+    authorUserId:document.getElementById('authorUserId').value.trim()||DEFAULTS.authorUserId,
+    watermarkText:document.getElementById('watermarkText').value.trim(),
+    sidebarLinks:DEFAULTS.sidebarLinks.map(function(l,i){
+      return{
+        icon:document.getElementById('sl_ic_'+i).value||l.icon,
+        nameZh:document.getElementById('sl_zh_'+i).value.trim()||l.nameZh,
+        nameEn:document.getElementById('sl_en_'+i).value.trim()||l.nameEn,
+        url:document.getElementById('sl_url_'+i).value.trim()
+      };
+    })
+  };
+  localStorage.setItem('xhs_config',JSON.stringify(c));
+  toast('✅ 配置已保存');
+}
+
+function reset(){
+  localStorage.removeItem('xhs_config');
+  show(DEFAULTS);
+  toast('🔄 已恢复默认配置');
+}
+
+// Stats
+fetch('manifest.json').then(function(r){return r.json()}).then(function(m){
+  var total=0;
+  m.forEach(function(n){total+=parseInt(n.likeCount||0)});
+  document.getElementById('stats').textContent=m.length+' 篇笔记 · '+total+' 总点赞';
+}).catch(function(){
+  // fallback: count from data element
+  try{
+    var d=window.__XHS_NOTES__;
+    if(d){var tl=d.reduce(function(s,n){return s+parseInt(n.interactInfo?.likeCount||0)},0);
+    document.getElementById('stats').textContent=d.length+' 篇笔记 · '+tl+' 总点赞';}
+  }catch(e){document.getElementById('stats').textContent='统计加载失败';}
+});
+
+show();
+</script>
+<script src="data.js"></script>
+</body>
+</html>

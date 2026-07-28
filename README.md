@@ -19,7 +19,7 @@
 ```bash
 git clone git@github.com:hugcosmos/SaveMyRedNote.git
 cd SaveMyRedNote
-pip install Pillow
+python3 -m venv venv && source venv/bin/activate && pip install Pillow
 ```
 
 **前置准备：**
@@ -34,7 +34,7 @@ pip install Pillow
 python3 xhs_collect.py auth SESSION_ID
 ```
 
-按提示运行，然后：Chrome 按 F12 → Network → 刷新页面 → 点第一个请求 → 在 Request Headers 找到 Cookie: 行 → 右键 Copy value → 粘贴到终端。
+运行后按脚本提示操作。SESSION_ID 通过 `bsk session list` 查看。
 
 ### 2. 一键跑完
 

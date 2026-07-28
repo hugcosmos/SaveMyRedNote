@@ -19,7 +19,7 @@ For personal backup only. **Default mode stores only your own posts and your aut
 ```bash
 git clone git@github.com:hugcosmos/SaveMyRedNote.git
 cd SaveMyRedNote
-pip install Pillow
+python3 -m venv venv && source venv/bin/activate && pip install Pillow
 ```
 
 **Prerequisites:**
@@ -34,7 +34,7 @@ pip install Pillow
 python3 xhs_collect.py auth SESSION_ID
 ```
 
-Run the command, then: Chrome F12 → Network → refresh → click first request → find Cookie: in Request Headers → right-click Copy value → paste into terminal.
+Run the command, follow the prompts. Get SESSION_ID from `bsk session list`.
 
 ### 2. One Command
 

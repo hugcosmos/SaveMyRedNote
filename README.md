@@ -113,13 +113,53 @@ index.html  data.js  manifest.json  images_wm/
 
 ---
 
+## 配置说明
+
+### config.json
+
+脚本自动生成，存入你的个人信息：
+
+```json
+{
+  "watermarkText": "你的昵称",
+  "authorName": "你的用户名",
+  "authorUserId": "你的用户ID",
+  "authorRedId": "你的小红书号",
+  "authorIp": "你的IP属地",
+  "authorAvatar": "images_wm/xxx/01.webp",
+  "authorBio": "你的简介",
+  "sidebarLinks": [...]
+}
+```
+
+### admin.html
+
+浏览器里可视化配置，保存到你自己的 localStorage，不影响其他人。
+
+---
+
 ## 隐私
 
-默认模式只保存你的帖子和你的回复，**其他用户的信息均不保存**。
-CDN 链接在构建时自动剔除。API Key 和 Cookie 不在展示页。
+| 数据 | 默认 | `--full` 模式 |
+|------|------|---------------|
+| 你的笔记内容 | ✅ 保存 | ✅ 保存 |
+| 你本人的评论 | ✅ 保存 | ✅ 保存 |
+| 你的回复 | ✅ 保存 | ✅ 保存 |
+| 他人的评论 | ❌ 不保存 | ✅ 保存 |
+| 他人的头像/昵称/ID | ❌ 不保存 | ✅ 保存 |
+| 图片 CDN 链接 | ❌ 构建时剔除 | ❌ 构建时剔除 |
+| API Key / Cookie | ❌ 不在展示页 | ❌ 不在展示页 |
+| 你的配置 config.json | 在 .gitignore 中，不会提交 | — |
 
 ---
 
 ## License
 
-MIT. Copyright (c) 2026 Nicky
+MIT。详见 [LICENSE](LICENSE)。Copyright (c) 2026 Nicky
+
+| 依赖 | 许可证 | MIT 兼容？ |
+|------|--------|-----------|
+| 本项目 | MIT | — |
+| Pillow | [Historical](https://github.com/python-pillow/Pillow/blob/main/LICENSE) | ✅ |
+| BrowserSkill (bsk) | [MIT](https://github.com/Tencent/BrowserSkill/blob/main/LICENSE) | ✅ |
+| Python 标准库 | [PSF](https://docs.python.org/3/license.html) | ✅ |

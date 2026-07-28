@@ -1,6 +1,6 @@
 <p align="right"><strong>English</strong> | <a href="README.md">中文</a></p>
 
-<h1 align="center">Save My RedNote 🍠</h1>
+<h1 align="center">Save My RedNote</h1>
 
 <p align="center">Backup your Xiaohongshu notes locally, preview & deploy to Cloudflare Pages.</p>
 
@@ -77,7 +77,7 @@ export AGNES_API_KEY=sk-your-key
 python3 xhs_collect.py translate
 ```
 
-Get an API key from [Agnes AI](https://agnes-ai.com). Without it, the page still works.
+Without it, the UI text (Home, Follow, etc.) will still translate, but note titles/content stay in Chinese.
 
 ---
 
@@ -113,7 +113,7 @@ index.html  data.js  manifest.json  images_wm/
 
 ---
 
-## Privacy
+## Collected Data
 
 | Data | Default | `--full` mode |
 |------|---------|---------------|

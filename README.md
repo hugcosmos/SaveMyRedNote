@@ -1,6 +1,6 @@
 <p align="right"><a href="README_EN.md">English</a> | <strong>中文</strong></p>
 
-<h1 align="center">Save My RedNote 🍠</h1>
+<h1 align="center">Save My RedNote</h1>
 
 <p align="center">备份你的小红书笔记，支持本地预览和 Cloudflare Pages 部署。</p>
 
@@ -77,7 +77,7 @@ export AGNES_API_KEY=sk-your-key
 python3 xhs_collect.py translate
 ```
 
-API Key 从 [Agnes AI](https://agnes-ai.com) 获取。不配不影响页面展示（页面无翻译按钮）。
+不配置则页面 UI 文字（首页→Home）会翻译，但笔记标题和正文保持中文。
 
 ---
 
@@ -113,7 +113,7 @@ index.html  data.js  manifest.json  images_wm/
 
 ---
 
-## 隐私
+## 获取的数据
 
 | 数据 | 默认 | `--full` 模式 |
 |------|------|---------------|
